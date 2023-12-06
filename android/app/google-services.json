@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974040905259",
+    "project_id": "turolconnecttfg",
+    "storage_bucket": "turolconnecttfg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974040905259:android:790ba15e2da42ed3b49c6e",
+        "android_client_info": {
+          "package_name": "com.example.turolconnect_tfg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwbgrApYXkha_tW0k4uI96oyBTS-KwKH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
