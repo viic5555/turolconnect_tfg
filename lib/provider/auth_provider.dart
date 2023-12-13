@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 class MyAuthProvider extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
@@ -13,26 +12,26 @@ class MyAuthProvider extends ChangeNotifier {
 
   setAuthType() {
     _authType =
-    _authType == AuthType.signIn ? AuthType.signUp : AuthType.signIn;
+        _authType == AuthType.signIn ? AuthType.signUp : AuthType.signIn;
   }
 
   // REGISTRAR UN USUARIO
   registrarUsuario(BuildContext context, String email, String password) async {
     try {
-      if(email.isEmpty){
+      if (email.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Debes escribir una dirección de correo'),
           backgroundColor: Colors.red,
         ));
       }
-      if(password.isEmpty){
+      if (password.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Debes escribir una contraseña'),
           backgroundColor: Colors.red,
         ));
       }
       final credential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -50,12 +49,10 @@ class MyAuthProvider extends ChangeNotifier {
       }
     } catch (e) {
       print(e);
-    }
-    finally{
+    } finally {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Usuario registrado correctamente'),
         backgroundColor: Colors.lightGreen,
-
       ));
     }
     notifyListeners();
@@ -64,40 +61,41 @@ class MyAuthProvider extends ChangeNotifier {
 // LOGUEAR USUARIO CON EMAIL/PASSWORD
   loguearUsuario(BuildContext context, String email, String password) async {
     try {
-      if(email.isEmpty){
+      if (email.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('You must give an email address'),
+          content: Text('Debes introducir una direccion de correo'),
           backgroundColor: Colors.red,
         ));
       }
-      if(password.isEmpty){
+      if (password.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('You must give a password'),
+          content: Text('Debes introducir una contraseña'),
           backgroundColor: Colors.red,
         ));
       }
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email, password: password);
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('No user found for that email'),
+          content: Text('Usuario o contraseña incorrecta'),
           backgroundColor: Colors.red,
         ));
       } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Wrong password provided for that user.'),
+          content: Text('Usuario o contraseña incorrecta'),
           backgroundColor: Colors.red,
         ));
       }
       notifyListeners();
     }
   }
+
   Future<void> logout() async {
     try {
       await firebaseAuth.signOut();
     } catch (e) {
-      print('Error during logout: $e');
+      print('Error al cerrar sesión: $e');
     }
     notifyListeners();
   }

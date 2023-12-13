@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:turolconnect_tfg/widgets/destacados_slider.dart';
 import 'package:turolconnect_tfg/widgets/event_slider.dart';
+import 'package:turolconnect_tfg/models/event.dart';
+import 'package:turolconnect_tfg/pages/event_detail_page.dart';
+import 'package:turolconnect_tfg/provider/event_provider.dart';
+import 'package:turolconnect_tfg/provider/auth_provider.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -13,6 +16,8 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  final EventProvider eventProvider = EventProvider();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +31,17 @@ class _DashboardPageState extends State<DashboardPage> {
           filterQuality: FilterQuality.high,
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              // Llama al método de cierre de sesión del AuthProvider
+              Provider.of<MyAuthProvider>(context, listen: false).logout();
+              // Navega de regreso a la página de inicio de sesión
+              // Navigator.of(context).pop();
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

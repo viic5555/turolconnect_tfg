@@ -62,10 +62,10 @@ class LoginPage extends StatelessWidget {
                         onPressed: () {
                           provider.loguearUsuario(context, _email, _password);
                         },
-                        child: const Text('Sign in'),
+                        child: const Text('Iniciar sesión'),
                       ),
                       TextButton(
-                        child: const Text('Sign up'),
+                        child: const Text('Registrarse y acceder'),
                         onPressed: () {
                           provider.registrarUsuario(context, _email, _password);
                         },
