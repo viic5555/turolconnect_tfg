@@ -3,9 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:turolconnect_tfg/widgets/destacados_slider.dart';
 import 'package:turolconnect_tfg/widgets/event_slider.dart';
-import 'package:turolconnect_tfg/widgets/image_display.dart';
-import 'package:turolconnect_tfg/models/event_model.dart';
-import 'package:turolconnect_tfg/pages/event_details_page.dart';
 import 'package:turolconnect_tfg/provider/event_provider.dart';
 import 'package:turolconnect_tfg/provider/auth_provider.dart';
 

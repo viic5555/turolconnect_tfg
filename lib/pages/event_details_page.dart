@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:turolconnect_tfg/models/event_model.dart';
 
 class EventDetailsPage extends StatelessWidget {
   final String imageUrl;
