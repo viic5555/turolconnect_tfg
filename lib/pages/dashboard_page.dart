@@ -64,11 +64,9 @@ class _DashboardPageState extends State<DashboardPage> {
                   style: GoogleFonts.aBeeZee(fontSize: 25)),
             ),
             const SizedBox(height: 32),
-            Container(
-              width: 200.0, // Ancho del contenedor
-              height: 200.0, // Altura del contenedor
-              child: ImageDisplay(),
-            ),
+            // Altura del contenedor
+            EventSlider(),
+
             const SizedBox(height: 32),
             /*Text('Tus verbenas de confianza',
                 style: GoogleFonts.aBeeZee(fontSize: 25)),
