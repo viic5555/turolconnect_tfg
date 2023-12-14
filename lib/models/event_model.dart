@@ -1,8 +1,9 @@
-// lib/models/event_model.dart
+// lib/models/EventModel_model.dart
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Event {
+  final int? id;
   final String name;
   final String description;
   final DateTime datetime;
@@ -10,6 +11,7 @@ class Event {
   final String imageUrl;
 
   Event({
+    this.id,
     required this.name,
     required this.description,
     required this.datetime,
@@ -29,7 +31,28 @@ class Event {
     );
   }
 
-  String getImageUrl() {
-    return imageUrl;
+  @override
+  List<Object?> get props => [name, description, datetime, location, imageUrl];
+
+  static Event fromSnapshot(DocumentSnapshot snap) {
+    Event event = Event(
+      id: snap['id'],
+      name: snap['name'],
+      description: snap['description'],
+      datetime: snap['2022-03-15T13:45:30Z'],
+      location: snap['location'],
+      imageUrl: snap['imageUrl'],
+    );
+    return event;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'description': description,
+      'datetime': datetime,
+      'location': location,
+      'imageUrl': imageUrl,
+    };
   }
 }
