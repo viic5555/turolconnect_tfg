@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:turolconnect_tfg/pages/event_details_page.dart';
 
 class EventSlider extends StatelessWidget {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -29,18 +30,28 @@ class EventSlider extends StatelessWidget {
           return CarouselSlider.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, itemIndex, pageViewIndex) {
-              return Padding(
-                padding: const EdgeInsets.all(
-                    8.0), // Ajusta este valor para cambiar la separación
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Container(
-                    height: 300,
-                    width: 200,
-                    color: Colors.red.shade300,
-                    child: Image.network(
-                      snapshot.data![itemIndex],
-                      fit: BoxFit.cover,
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          EventDetailsPage(imageUrl: snapshot.data![itemIndex]),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      height: 300,
+                      width: 200,
+                      color: Colors.red.shade300,
+                      child: Image.network(
+                        snapshot.data![itemIndex],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
